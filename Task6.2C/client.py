@@ -19,8 +19,8 @@ try:
 
         send_query = input("\nDo you want to send another DNS query? (y/n): ")
 
+# terminate the server program if there is an exception
 finally:
     print("The client program is terminating...")
-    # tell the server program to terminate
     client_socket.sendto(("terminate").encode(), server_info)
     client_socket.close()
