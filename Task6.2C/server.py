@@ -14,7 +14,9 @@ CNAME_records = {
     "blog.jimhalpert.com": "jimhalpert.com",
     "www.jimhalpert.com": "jimhalpert.com",
     "blog.michaelscott.com": "michaelscott.com",
-    "www.michaelscott.com": "michaelscott.com"
+    "www.michaelscott.com": "michaelscott.com",
+    # fail case for lookup (does not exist in A_records)
+    "www.dwightshcrute.com": "dwightshrute.com"
 }
 
 server_info = ('localhost', 11124)
@@ -33,12 +35,17 @@ while True:
     if domain_name == "terminate":
         print("The server program is terminating...")
         break
+
     elif domain_name in A_records:
         domain_IP = A_records[domain_name]
         server_socket.sendto(domain_IP.encode(), client_info)
+
     elif domain_name in CNAME_records:
-        domain_IP = A_records[CNAME_records[domain_name]]
-        server_socket.sendto(domain_IP.encode(), client_info)
+        if CNAME_records[domain_name] in A_records:
+            server_socket.sendto(domain_IP.encode(), client_info)
+        else:
+            server_socket.sendto(("Domain does not exist in A records").encode(), client_info)
+        
     else:
         server_socket.sendto(("Domain does not exist!").encode(), client_info)
         
