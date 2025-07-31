@@ -12,7 +12,7 @@ bind the socket to server_addr and server_port
 print "server is waiting for a query"
 
 loop infinitely
-    receive query from the client
+    query = message from the client
 
     if query == quit
         exit loop
