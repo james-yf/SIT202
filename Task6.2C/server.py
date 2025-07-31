@@ -23,9 +23,12 @@ query_buff = 100
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind(server_info)
 
+print("The server is running and awaiting a query from the client!")
+
 while True:
     query_message, client_info = server_socket.recvfrom(query_buff)
     domain_name = query_message.decode()
+    print(f"Server received the message [{domain_name}] from the client.\n")
 
     if domain_name in A_records:
         domain_IP = A_records[domain_name]
