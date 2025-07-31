@@ -29,16 +29,16 @@ while True:
     query_message, client_info = server_socket.recvfrom(query_buff)
     domain_name = query_message.decode()
     print(f"Server received the message [{domain_name}] from the client.\n")
-
-    if domain_name in A_records:
+    
+    if domain_name == "terminate":
+        print("The server program is terminating...")
+        break
+    elif domain_name in A_records:
         domain_IP = A_records[domain_name]
         server_socket.sendto(domain_IP.encode(), client_info)
     elif domain_name in CNAME_records:
         domain_IP = A_records[CNAME_records[domain_name]]
         server_socket.sendto(domain_IP.encode(), client_info)
-    elif domain_name == "terminate":
-        print("The server program is terminating...")
-        break
     else:
         server_socket.sendto(("Domain does not exist!").encode(), client_info)
         
