@@ -14,8 +14,8 @@ try:
         
         domain_name = input("Enter a domain name: ")
         client_socket.sendto(domain_name.encode(), server_info)
-        server_response, _ = client_socket.recvfrom(response_buff)
-        print(f"The server responded with: {server_response.decode()}")
+        response_message, _ = client_socket.recvfrom(response_buff)
+        print(f"The server responded with: {response_message.decode()}")
 
         send_query = input("\nDo you want to send another DNS query? (y/n): ")
 
