@@ -41,7 +41,9 @@ while True:
         server_socket.sendto(domain_IP.encode(), client_info)
 
     elif domain_name in CNAME_records:
-        if CNAME_records[domain_name] in A_records:
+        CNAME = CNAME_records[domain_name]
+        if CNAME in A_records:
+            domain_IP = A_records[CNAME]
             server_socket.sendto(domain_IP.encode(), client_info)
         else:
             server_socket.sendto(("Domain does not exist in A records").encode(), client_info)
