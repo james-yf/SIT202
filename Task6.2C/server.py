@@ -4,7 +4,9 @@ import socket
 A_records = {
     "pamelabeesly.com": "45.67.89.123",
     "jimhalpert.com": "102.154.76.88",
-    "michaelscott.com": "172.32.210.5"
+    "michaelscott.com": "172.32.210.5",
+    # domain does not exist in CNAME_records
+    "ryanhoward.com": "102.89.174.23"
 }
 
 # alias name : canonical name
