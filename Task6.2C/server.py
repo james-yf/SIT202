@@ -30,9 +30,9 @@ server_socket.bind(server_info)
 print("The server is running and awaiting a query from the client!")
 
 while True:
-    query_message, client_info = server_socket.recvfrom(query_buff)
-    domain_name = query_message.decode()
-    print(f"Server received the message [{domain_name}] from the client.\n")
+    query, client_info = server_socket.recvfrom(query_buff)
+    domain_name = query.decode()
+    print(f"Server received the DNS query for [{domain_name}] from the client.\n")
     
     if domain_name == "terminate":
         print("The server program is terminating...")
