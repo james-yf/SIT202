@@ -1,7 +1,7 @@
 import socket
 
 server_info = ('localhost', 11124)
-query_buff = 100
+message_buff = 100
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind(server_info)
@@ -9,7 +9,7 @@ server_socket.bind(server_info)
 print("The server is running!")
 
 while True:
-    _, client_info = server_socket.recvfrom(query_buff)
+    _, client_info = server_socket.recvfrom(message_buff)
     message = _.decode()
     
     if message == "terminate":
