@@ -5,8 +5,9 @@ server_socket.bind(client_info)
 
 message_buff = 100
 server_socket.listen(1)
-print("The server is running!")
+print("The server is listening!")
 connectCl1Socket, _ = server_socket.accept()
+print("Connection established")
 
 while True:
     message = connectCl1Socket.recv(message_buff)
